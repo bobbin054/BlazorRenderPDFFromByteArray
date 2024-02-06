@@ -1,9 +1,4 @@
 ﻿@page "/"
 @inject NavigationManager Navigator
 <PageTitle>Home</PageTitle>
-<a href="@($"{Navigator.BaseUri}ViewPDF?fileName={fileName}")" target="_blank">
-    @fileName
-</a>
-@code {
-    private string fileName = "HiMom.pdf";
-}
+<a href="@($"{Navigator.BaseUri}ViewPDF")" target="_blank">View a pdf</a>

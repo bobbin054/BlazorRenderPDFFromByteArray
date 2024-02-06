@@ -2,17 +2,14 @@
 @inject IWebHostEnvironment _webHostEnvironment
 @inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
-@attribute [StreamRendering]
 <body style="height: 100%; width: 100%; overflow: hidden; margin:0px; background-color: rgb(230, 230, 230);">
     <embed id="embedTag" style="position:absolute; left: 0; top: 0;" width="100%" height="100%" type="application/pdf">
 </body>
 @code {
-    [SupplyParameterFromQuery]
-    public string? fileName { get; set; }
     private byte[]? pdfBlob = null;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var pdfFilePath = Path.Combine(_webHostEnvironment.WebRootPath, fileName);
+        var pdfFilePath = Path.Combine(_webHostEnvironment.WebRootPath, "HiMom.pdf");
         pdfBlob = System.IO.File.ReadAllBytes(pdfFilePath);
         await JSRuntime.InvokeVoidAsync("openPdf", pdfBlob);
     }
